@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+void main(){
+  runApp(MaterialApp(home: StaggeredGridd2(),));
+}
+
+class StaggeredGridd2 extends StatelessWidget {
+
+  var images = [
+    "assets/images/bananas.png",
+    "assets/images/bibimbap.png",
+    "assets/images/donut.png",
+    "assets/images/grapes.png",
+    "assets/images/hamburger.png",
+    "assets/images/orange.png",
+    "assets/images/pineapple.png",
+    "assets/images/pizza.png",
+    "assets/images/ramen.png",
+    "assets/images/salad.png"
+  ];
+  var cac =[2,2,2,3,4,4,6,3,2,3];
+  var mac =[1,2,3,4,1,2,3,4,1,2];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Staggered grid view"),
+      ),
+      body: SingleChildScrollView(
+        child: StaggeredGrid.count(crossAxisCount: 4,
+        children: List.generate(
+            10,
+                (index) =>StaggeredGridTile.count(
+                    crossAxisCellCount: cac[index],
+                    mainAxisCellCount: mac[index],
+                  child: Card(
+                    color:
+                    Colors.primaries[index % Colors.primaries.length],
+                    child: Image.asset(images[index]),
+                  ),),),),
+      ),
+    );
+  }
+}
